@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 # Defining Functions
 # Note: Display all real/float numbers to 2 decimal places.
 
-def select_all_countries(connection):
+def select_all_countries(connection, printRow=True):
     # Queries the database and selects all the countries 
     # stored in the countries table of the database.
     # The returned results are then printed to the 
@@ -26,15 +26,20 @@ def select_all_countries(connection):
 
         # Execute the query via the cursor object.
         results = cursor.execute(query)
+        
+        if(printRow == False):
+            return results
+
 
         # Iterate over the results and display the results.
         for row in results:
             print(f"Country Id: {row['id']} -- Country Name: {row['name']} -- Country Timezone: {row['timezone']}")
-
+        
+ 
     except sqlite3.OperationalError as ex:
         print(ex)
 
-def select_all_cities(connection):
+def select_all_cities(connection, printRow=True):
    # Queries the database and selects all the countries 
    # stored in the countries table of the database.
    # The returned results are then printed to the 
@@ -50,6 +55,9 @@ def select_all_cities(connection):
 
        # Execute the query via the cursor object.
        results = cursor.execute(query)
+       
+       if(printRow == False):
+            return results
 
        # Iterate over the results and display the results.
        for row in results:

@@ -66,7 +66,7 @@ def select_all_cities(connection, printRow=True):
     except sqlite3.OperationalError as ex:
         print(ex)
 
-def average_annual_temperature(connection, city_id, year):
+def average_annual_temperature(connection, city_id, year, printRow=True):
    # TODO: Implement this function
    # Find AVG(mean_temp) in daily_weather_entries
     try:
@@ -80,7 +80,6 @@ def average_annual_temperature(connection, city_id, year):
        WHERE (date >= '{year}-01-01' AND date <= '{year}-12-31') AND city_id = {city_id}
 
        """
-       print(query)
 
        # Get a cursor object from the database connection
        # that will be used to execute database query.
@@ -88,6 +87,9 @@ def average_annual_temperature(connection, city_id, year):
 
        # Execute the query via the cursor object.
        results = cursor.execute(query)
+       
+       if(printRow == False):
+            return results
 
        # Iterate over the results and display the results.
        for row in results:
@@ -96,7 +98,7 @@ def average_annual_temperature(connection, city_id, year):
     except sqlite3.OperationalError as ex:
         print(ex)
 
-def average_seven_day_precipitation(connection, city_id, start_date):
+def average_seven_day_precipitation(connection, city_id, start_date, printRow=True):
     # TODO: Implement this function
     # Find AVG(precipitation) in daily_weather_entries
     try:
@@ -123,6 +125,9 @@ def average_seven_day_precipitation(connection, city_id, start_date):
 
        # Execute the query via the cursor object.
        results = cursor.execute(query)
+       
+       if(printRow == False):
+            return results
 
        # Fetch a row from the results
        row = results.fetchone()
@@ -169,7 +174,7 @@ def average_mean_temp_by_city(connection, date_from, date_to):
     except sqlite3.OperationalError as ex:
         print(ex)
 
-def average_annual_precipitation_by_country(connection, year):
+def average_annual_precipitation_by_country(connection, year, printRow=True):
     # TODO: Implement this function
     try:
         connection.row_factory = sqlite3.Row

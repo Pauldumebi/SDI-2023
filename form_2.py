@@ -1,4 +1,4 @@
-from helpers.widgets import tkInput, tkLabel
+from helpers.widgets import tk_input, tk_label
 
 class PhaseTwoForm:
     # def __init__(self):
@@ -10,6 +10,6 @@ class PhaseTwoForm:
                 widget.destroy()
                 
                 
-        tkLabel(form, text="This tab shows Phase Two of the project. Click any of the buttons below to get started", x=0, y=5)
-        tkLabel(form, text='This is form 2', x=0, y=80)
+        tk_label(form, text="This tab shows Phase Two of the project. Click any of the buttons below to get started", x=0, y=5)
+        tk_input(form, text='This is form 2', x=0, y=80)
                 

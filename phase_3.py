@@ -1,5 +1,5 @@
 import tkinter as tk
-from helpers.widgets import tkInput, tkLabel
+from helpers.widgets import tk_input, tk_label
 from tkinter import ttk
 from form_1 import PhaseOneForm
 from form_2 import PhaseTwoForm
@@ -9,7 +9,7 @@ from form_4 import PhaseFourForm
 class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry("950x700")
+        self.geometry("1100x800")
         self.title("Software for Digital Innovation (Madonna Tsegha)")
 
         self.tabControl = ttk.Notebook(self)

@@ -126,22 +126,27 @@ def average_seven_day_precipitation(connection, city_id, start_date, printRow=Tr
        # Execute the query via the cursor object.
        results = cursor.execute(query)
        
-       if(printRow == False):
-            return results
 
        # Fetch a row from the results
-       row = results.fetchone()
+       row = results.fetchone() 
        if row and row['avg_precipitation'] is not None:
            # Check if value is not none
+           if(printRow == False):
+                return [f"Query: start_date = {start_date}, end_date = {end_date}, city_id = {city_id}",
+                        f"Average seven day precipitation starting from {start_date} to {end_date} in {row['city_name']} is {row['avg_precipitation']:.2f}"]
+            
            print(f"Average seven day precipitation starting from {start_date} to {end_date} in {row['city_name']} is {row['avg_precipitation']:.2f}")
        else:
+            if(printRow == False):
+               return [f"Query: start_date = {start_date}, end_date = {end_date}, city_id = {city_id}", f"No data found for the time period."]
+           
             print(f"No data found for the time period.")
 
     except sqlite3.OperationalError as ex:
         print(ex)
 
 
-def average_mean_temp_by_city(connection, date_from, date_to):
+def average_mean_temp_by_city(connection, date_from, date_to, printRow=True):
     # TODO: Implement this function
     # Find AVG(mean_temp) in daily_weather_entries by cities_name in cities
     try:
@@ -161,6 +166,9 @@ def average_mean_temp_by_city(connection, date_from, date_to):
 
        # Execute the query via the cursor object.
        results = cursor.execute(query, (date_from, date_to))
+       
+       if(printRow == False):
+           return results
 
        # Fetch a row from the results
        for row in results:
@@ -201,7 +209,11 @@ def average_annual_precipitation_by_country(connection, year, printRow=True):
 
         # Fetch a row from the results
         rows = results.fetchall()
-        if rows:
+        
+        if(printRow == False):
+            return rows
+            
+        if rows:        
             # Iterate over the results and display the average precipitation for each country
             for row in rows:
                 avg_precipitation = row['avg_precipitation']
@@ -209,7 +221,7 @@ def average_annual_precipitation_by_country(connection, year, printRow=True):
                     print(f"Average annual precipitation for {row['country_name']} in {year}: {avg_precipitation}")
                 else:
                     print(f"No data found for {row['country_name']} in {year}.")
-        else:
+        else:        
             print(f"No data found for the specified time period.")
 
     except sqlite3.OperationalError as ex:

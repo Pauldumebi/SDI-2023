@@ -39,7 +39,7 @@ class PhaseTwoForm:
             y2 = 150
             
             year_avg_temp = tk.StringVar(form)
-            year_avg_temp.set(yearOption[0])
+            year_avg_temp.set(yearOption[1])
             tk_label(form, text="Select Year: ", x=100, y=y2)
             tk_options(form, year_avg_temp, yearOption, x=200, y=y2)
             
@@ -74,7 +74,7 @@ class PhaseTwoForm:
             y4 = 350
             
             year_avg_temp_prep = tk.StringVar(form)
-            year_avg_temp_prep.set(yearOption[0])
+            year_avg_temp_prep.set(yearOption[2])
             tk_label(form, text="Select Year: ", x=0, y=y4)
             tk_options(form, year_avg_temp_prep, yearOption, x=100, y=y4)
             

@@ -1,8 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkcalendar import Calendar, DateEntry
-from  datetime import date, datetime
-from tkinter import messagebox
+from  datetime import date
 
 # class Widgets:
 
@@ -48,13 +47,3 @@ def tk_date_entry(window,x_axis,y_axis,min_date=date(2020,2,1), max_date=date(20
                     )
     cal.place(x=x_axis,y=y_axis)
     return cal
-
-
-def is_valid_date(date_str):    
-    try:
-        parsed_date = datetime.strptime(date_str, '%d-%m-%Y')
-        formatted_date = parsed_date.strftime('%Y-%m-%d')
-        
-        return formatted_date
-    except ValueError:
-        messagebox.showerror("Error", f"The date {date_str} is not in the correct format ('dd-mm-yyyy').")

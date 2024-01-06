@@ -9,7 +9,7 @@ from form_4 import PhaseFourForm
 class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry("1100x800")
+        self.geometry("1150x800")
         self.title("Software for Digital Innovation (Madonna Tsegha)")
 
         self.tabControl = ttk.Notebook(self)
@@ -31,8 +31,8 @@ class MyApp(tk.Tk):
         form = tk.Frame(window1, width=900, height=400)
         form.place(x=50, y=50)
 
-        form2 = tk.Frame(self.phaseTwo, width=600, height=400)
-        form2.place(x=150, y=50)
+        form2 = tk.Frame(self.phaseTwo, width=950, height=600)
+        form2.place(x=100, y=50)
         
         form3 = tk.Frame(self.phaseThree, width=600, height=400)
         form3.place(x=150, y=50)

@@ -1,22 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
-from helpers.widgets import tk_label, tk_options, tk_label, tk_table, add_row_to_tk_table, tk_options, tk_date_entry, is_valid_date
-from helpers.utils import get_cities
-# from helpers.destroy_frame import destroyFrame
+from helpers.widgets import tk_label, tk_options, tk_label, tk_table, add_row_to_tk_table, tk_options, tk_date_entry
+from helpers.utils import get_cities, destroy_window, is_valid_date
 from phase_1 import select_all_countries, select_all_cities, average_annual_temperature, average_seven_day_precipitation, average_mean_temp_by_city, average_annual_precipitation_by_country
 import sqlite3
 from tkinter import messagebox
 from  datetime import date
 
 class PhaseOneForm:
-            
-    def destroy_window(self, window):
-        if len(window.winfo_children()) > 0:
-            for widget in window.winfo_children():
-                widget.destroy()
         
     def form1(self, window, form):
-        self.destroy_window(form)
+        destroy_window(form)
             
         tk_label(window, text="This tab shows Phase One of the project. Click any of the buttons below to get started", x=200, y=20)
 
@@ -31,7 +25,7 @@ class PhaseOneForm:
     def show_all_countries(self, form):
         
         with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-            self.destroy_window(form)
+            destroy_window(form)
                     
             allCountries = select_all_countries(connection, False)
             table = tk_table(form, ["Country Id", "Country Name", "Country Timezone"], 25, 150)
@@ -43,7 +37,7 @@ class PhaseOneForm:
     def show_all_cities(self, form):
         
         with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-            self.destroy_window(form)
+            destroy_window(form)
                     
             allCities = select_all_cities(connection, False)
             table = tk_table(form, ["City Id", "City Name", "Longitude", "Latitude", "Country ID"], 25, 150)
@@ -53,7 +47,7 @@ class PhaseOneForm:
                 
         
     def cal_avg_temp(self, display, connection, cities, city, year):
-        self.destroy_window(form)
+        destroy_window(display)
         
         city_id = cities[city]
         results = average_annual_temperature(connection, city_id, year, False)
@@ -67,7 +61,7 @@ class PhaseOneForm:
         
         try:
             with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-                self.destroy_window(form)
+                destroy_window(form)
                 
                 cities = get_cities(connection)
                 selected_value = tk.StringVar(form)
@@ -113,7 +107,7 @@ class PhaseOneForm:
     def show_avg_7_day_precipitation(self, form):
         
         with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-            self.destroy_window(form)
+            destroy_window(form)
                     
             cities = get_cities(connection)
             selected_value = tk.StringVar(form)
@@ -152,7 +146,7 @@ class PhaseOneForm:
     def show_avg_mean_temp_by_city(self, form):
         
         with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-            self.destroy_window(form)
+            destroy_window(form)
             tk_label(form, text="Select a start date", x=200, y=140)
             date_from = tk_date_entry(form, 200, 170, min_date=date(2020, 1, 1), max_date=date(2022, 12, 31))
             tk_label(form, text="Select a end date", x=400, y=140)
@@ -184,7 +178,7 @@ class PhaseOneForm:
         try:
             with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
                 
-                self.destroy_window(form)    
+                destroy_window(form)    
                 yearOption = [2020, 2021, 2022]
                 year = tk.StringVar(form)
                 year.set(yearOption[0])

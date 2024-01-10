@@ -1,5 +1,5 @@
 import tkinter as tk
-from helpers.widgets import tk_input, tk_label
+from helpers.widgets import tk_label
 from helpers.utils import database_connection
 from tkinter import ttk
 from form_1 import PhaseOneForm
@@ -50,13 +50,4 @@ class MyApp(tk.Tk):
         form_two_instance = PhaseTwoForm()
         form_two_instance.form2(form2)
         
-        form_three_instance = PhaseThreeForm()
-        form_three_instance.form3(form3)
-        
-        form_four_instance = PhaseFourForm()
-        form_four_instance.form4(form4)
-
-
-if __name__ == "__main__":
-    root = MyApp()
-    root.mainloop()
+        form_three_i

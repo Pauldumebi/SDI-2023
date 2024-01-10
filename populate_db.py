@@ -38,17 +38,4 @@ with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
     # query = "INSERT INTO cities (name, longitude, latitude, country_id) VALUES (?, ?, ?, ?)"
     # values = ["Middlesbrough", "54.57623", "-1.23483", "1"]
     
-    # query = "INSERT INTO cities (name, longitude, latitude, country_id) VALUES (?, ?, ?, ?)"
-    # values = ["Toulouse", "43.60426", "1.44367", "2"]
-
-
-    # query = "INSERT INTO cities (name, longitude, latitude, country_id) VALUES (?, ?, ?, ?)"
-    # values = ["Paris", "48.85341", "2.3488", "2"]
-
-    # query = "INSERT INTO cities (name, longitude, latitude, country_id) VALUES (?, ?, ?, ?)"
-    # values = ["London", "51.50853", "-0.12574", "1"]
-    
-    query = "DELETE FROM cities WHERE id = ?"
-    values = ('20',)
-    
-    perform_delete(connection, query, values)
+    # query = "INSERT INTO cities (name, 

@@ -1,6 +1,6 @@
 import tkinter as tk
 from helpers.widgets import tk_label, tk_options, tk_date_entry
-from phase_2 import plot_average_temperature_cities, plot_annual_precipitation_by_country, plot_seven_day_precipitation, plot_grouped_bar_chart, plot_daily_temperature
+from phase_2 import plot_average_temperature_cities, plot_annual_precipitation_by_country, plot_seven_day_precipitation, plot_grouped_bar_chart, plot_daily_temperature, plot_daylight_duration
 from helpers.utils import get_place, months_dict, is_valid_date, database_connection
 import sqlite3
 from  datetime import date
@@ -20,7 +20,6 @@ class PhaseTwoForm:
             
     def form2(self, form):
         tk_label(form, text="This tab shows Phase Two of the project. Click any of the buttons below to get started", x=100, y=0)
-        # destroy_window(form)
         
         if(self.connection is not None):
         
@@ -122,11 +121,4 @@ class PhaseTwoForm:
             func5 = lambda: plot_daily_temperature(
                 self.connection, 
                 cities[selected_city.get()], 
-                year_daily_temp.get(), 
-                months[selected_month.get()]
-            )
-            
-            tk.Button(form, text= "Show Daily Temperature", command=func5).place(x=650, y=y5-4)
-            
-            
-                
+                year_dail

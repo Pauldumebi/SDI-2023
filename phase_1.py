@@ -234,23 +234,4 @@ if __name__ == "__main__":
     # above, printing the results to the terminal.
     with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
         select_all_countries(connection)
-        select_all_cities(connection)
-        city_id = int(input("City number between 1 to 4: "))
-        year = int(input("Year from 2020 - 2022: "))
-        average_annual_temperature(connection, city_id, year)
-        city_id = int(input("City number between 1 to 4: "))
-        start_date = input("Start date (YYYY-MM-DD): ")
-        average_seven_day_precipitation(connection, city_id, start_date)
-        city_id = int(input("City number between 1 to 4: "))
-        date_from = input("Start date (YYYY-MM-DD): ")
-        date_to = input("End date (YYYY-MM-DD): ")
-        average_mean_temp_by_city(connection, date_from, date_to)
-        year = int(input("Year from 2020 - 2022: "))
-        average_annual_precipitation_by_country(connection, year)
-        
-
-
-'''
-Additional Codes
-
-'''
+        sel

@@ -7,11 +7,6 @@ import pytest
 import warnings
 import requests
 
-
-
-
-
-
 class widgetsModules(unittest.TestCase):
 
     @pytest.mark.asyncio
@@ -60,32 +55,6 @@ class widgetsModules(unittest.TestCase):
         month_dict_len = len(month_dict)
         expected = 12
         self.assertLessEqual(month_dict_len, expected, message)
-        
-    # # tests if region is a list of items
-    # def testRegionList(self):
-    #     regions = filterParams.regionList()
-    #     self.assertIsInstance(regions, list)
-        
-    # # tests year is a list
-    # def testYearList(self):
-    #     year = filterParams.monthList()
-    #     self.assertIsInstance(year, list)
-        
-    # # tests if day is a list of all days
-    # def testDayList(self):
-    #     days = filterParams.dayList()
-    #     self.assertIsInstance(days, list)
-    
-    # # tests if this function returns a tuple
-    # def testValidateForm(self):
-    #     date = validateForm.validateForm("1", "2", "January", "April", "2020", "2020", "Hartlepool", "Middlesbrough")
-    #     self.assertIsInstance(date, tuple)
-        
-    #     message = "You cannot have more than 2 dates, start and end"
-    #     dateLength = len(date)
-    #     expected = 2
-        
-    #     self.assertEqual(dateLength, expected, message)
         
         
 if __name__ == "__main__":

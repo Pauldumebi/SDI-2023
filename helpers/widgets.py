@@ -1,19 +1,43 @@
-from tkinter import *
+# from tkinter import *
 from tkinter import ttk
 from tkcalendar import Calendar, DateEntry
 from  datetime import date
+import tkinter as tk
 
 # class Widgets:
+def on_entry_click(entry, placeholder_text):
+        if entry.get() == placeholder_text:
+            entry.delete(0, tk.END)
+            entry.config(fg='black')
+            
+def on_focus_out(entry, placeholder_text):
+    if entry.get() == "":
+        entry.insert(0, placeholder_text)
+        entry.config(fg='grey')
+
+def add_placeholder(entry, placeholder_text):
+    entry.insert(0, placeholder_text)
+    entry.bind("<FocusIn>", lambda event: on_entry_click(entry, placeholder_text))
+    entry.bind("<FocusOut>", lambda event: on_focus_out(entry, placeholder_text))
 
 def tk_input(window, text, x, y):
-    input = Entry(window, text=text, font=("Arial", 15))
+    input = tk.Entry(window, text=text, font=("Arial", 15))
     input.place(x=x, y=y)
     
     return input
 
+def tk_checkbox(window, text, var, x, y, disabled=True):
+    checkbox = tk.Checkbutton(window, text=text, variable=var)
+    checkbox.place(x=x, y=y)
+    
+    if disabled:
+        checkbox.config(state="disabled")
+    
+    return checkbox
+
 
 def tk_label(window, text, x, y):
-    label = Label(window, text=text, font=("Arial", 15))
+    label = tk.Label(window, text=text, font=("Arial", 15))
     label.place(x=x, y=y)
     
     return label
@@ -36,7 +60,7 @@ def add_row_to_tk_table(tree, *row):
 
 def tk_options(window, val, OPTIONS, x, y):
 
-    dropDownMenu = OptionMenu(window, val, *OPTIONS)
+    dropDownMenu = tk.OptionMenu(window, val, *OPTIONS)
     dropDownMenu.place(x=x, y=y)
     
     return dropDownMenu
@@ -47,3 +71,16 @@ def tk_date_entry(window,x_axis,y_axis,min_date=date(2020,2,1), max_date=date(20
                     )
     cal.place(x=x_axis,y=y_axis)
     return cal
+
+def show_loader(window):
+    loader_window = tk.Toplevel(window)
+    loader_window.title("Loading...")
+
+    # Create a Label with a message
+    label = tk.Label(loader_window, text="Please wait...", font=("Arial", 12))
+    label.pack(pady=10)
+
+    return loader_window
+
+def close_loader(loader_window):
+    loader_window.destroy()

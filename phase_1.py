@@ -74,7 +74,7 @@ def average_annual_temperature(connection, city_id, year, printRow=True):
        # Define the query
        query = f"""
 
-       SELECT AVG(mean_temp), name
+       SELECT AVG(mean_temp) as avg_temp, name
        FROM daily_weather_entries
        INNER JOIN cities ON daily_weather_entries.city_id = cities.id
        WHERE (date >= '{year}-01-01' AND date <= '{year}-12-31') AND city_id = {city_id}

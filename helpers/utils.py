@@ -4,30 +4,37 @@ from multiprocessing import connection
 from  datetime import datetime
 from tkinter import messagebox
 import os
+import requests
 
 
+def make_request(url):
+    req = requests.get(url)
+    response = req.json()
+    
+    if req.status_code == 200:
+        return response
+    
 def get_place(connection, table='cities'):
     
-    with sqlite3.connect("db/CIS4044-N-SDI-OPENMETEO-PARTIAL.db") as connection:
-        try:
-            connection.row_factory = sqlite3.Row
-            query = f"""
-                SELECT id, name
-                FROM {table}
-            """
-            cursor = connection.cursor()
-            results = cursor.execute(query)
-            
-            dict = {}
-            
-            for row in results:
-                dict[row['name']] = row['id']
-            
-            return dict
+    try:
+        connection.row_factory = sqlite3.Row
+        query = f"""
+            SELECT id, name
+            FROM {table}
+        """
+        cursor = connection.cursor()
+        results = cursor.execute(query)
+        
+        dict = {}
+        
+        for row in results:
+            dict[row['name']] = row['id']
+        
+        return dict
 
-        except sqlite3.OperationalError as ex:
-            print(ex)
-            return []
+    except sqlite3.OperationalError as ex:
+        print(ex)
+        return []
 
 
 def destroy_window(window):

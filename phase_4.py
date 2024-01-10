@@ -1,7 +1,6 @@
 from helpers.widgets import tk_input, tk_label, add_placeholder, tk_checkbox, show_loader, close_loader
 import tkinter as tk
-from helpers.request import make_request
-from helpers.utils import db_crud, check_and_add_column, database_connection
+from helpers.utils import db_crud, check_and_add_column, database_connection, make_request
 from tkinter import messagebox
 
 class PhaseFourForm:
